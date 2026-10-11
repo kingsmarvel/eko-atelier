@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eko Atelier — Custom clothing, made to your measure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#0D1511;--alt:#15211B;--green:#1D2D25;--brass:#C9A66B;--tape:#F4C430;--text:#EEF1EC;--muted:#A9B6AF;--line:#2C4036;--card:#15211B;
+--display:'Cormorant Garamond',Georgia,serif;--ui:'Manrope',system-ui,sans-serif;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--paper);color:var(--text);font:400 16px/1.65 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(3rem,8vw,5.6rem)}
+h2{font-size:clamp(2.1rem,4.6vw,3.1rem)}
+h3{font-size:1.5rem;line-height:1.15}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+section{padding:88px 0}
+.alt{background:var(--alt)}
+.lead{color:var(--muted);max-width:50ch;margin-top:12px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.94rem;border:1.5px solid var(--text);cursor:pointer;font-family:var(--ui);transition:background .2s,color .2s,border-color .2s}
+.btn.solid{background:var(--tape);border-color:var(--tape);color:#14170F}
+.btn.solid:hover{background:#fff;border-color:#fff}
+.btn.line{background:transparent;color:inherit}
+.btn.line:hover{background:var(--text);color:var(--paper)}
+.ph{position:relative;display:grid;place-items:center;text-align:center;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:600;padding:12px;background:repeating-linear-gradient(135deg,#1C2A23 0 14px,#18241E 14px 28px)}
+.ph.g{background:repeating-linear-gradient(135deg,#243A30 0 14px,#203329 14px 28px);color:rgba(255,255,255,.55)}
+/* header */
+/* hero */
+.hero{padding:56px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:44ch;margin:22px 0 32px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .shot{position:relative}
+.hero .ph{aspect-ratio:4/5;border-radius:220px 220px 6px 6px}
+.badge{position:absolute;left:-18px;bottom:36px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:0 12px 30px rgba(0,0,0,.4);font-size:.88rem}
+.badge b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:600;line-height:1}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:40px}.badge{left:12px}}
+/* trust strip */
+.strip{padding:0;border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip div{padding:26px 18px;border-right:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+.strip div:last-child{border:0}
+.strip b{display:block;color:var(--text);font-size:.98rem}
+@media(max-width:760px){.strip .wrap{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:0}.strip div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+/* cards */
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:960px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--brass)}
+.card .ph{aspect-ratio:4/5}
+.card .body{padding:18px 20px 22px}
+.card p{color:var(--muted);font-size:.93rem;margin-top:6px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.9rem}
+.price{font-weight:700}
+.tag{font-size:.78rem;background:var(--alt);padding:3px 10px;border-radius:999px;color:var(--muted)}
+.svc .ph{aspect-ratio:3/2}
+/* process */
+.steps{counter-reset:s}
+.step{padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--tape);color:#14170F;font-family:var(--display);font-size:1.35rem;margin-bottom:18px}
+.step p{color:var(--muted);margin-top:8px}
+/* about / why */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split .ph{aspect-ratio:1/1;border-radius:14px}
+.ticks{list-style:none;padding:0;margin-top:26px;display:grid;gap:18px}
+.ticks li{padding-left:34px;position:relative;color:var(--muted)}
+.ticks li b{color:var(--text);display:block}
+.ticks li::before{content:"";position:absolute;left:0;top:6px;width:18px;height:18px;border-radius:50%;background:var(--brass)}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:36px}}
+/* fabrics */
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+@media(max-width:760px){.sw{grid-template-columns:repeat(3,1fr)}}
+.sw div{text-align:center;font-size:.9rem;font-weight:600}
+.sw i{display:block;aspect-ratio:1;border-radius:50%;margin-bottom:10px;border:1px solid var(--line)}
+/* testimonials */
+.quote{padding:28px}
+.quote p{font-family:var(--display);font-size:1.45rem;line-height:1.3;color:var(--text);margin:0 0 20px}
+.who{display:flex;gap:12px;align-items:center;font-size:.88rem;color:var(--muted)}
+.who .ph{width:44px;height:44px;border-radius:50%;padding:0;aspect-ratio:1}
+.who b{color:var(--text);display:block}
+/* cta band */
+.band{background:var(--green);border:1px solid var(--line);color:#EEF1EC;border-radius:22px;padding:64px 40px;text-align:center}
+.band p{color:#A9B6AF;max-width:46ch;margin:14px auto 28px}
+
+
+.band .cta{justify-content:center}
+/* faq + contact */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--brass);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px;max-width:56ch}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media(max-width:860px){.contact{grid-template-columns:1fr;gap:36px}}
+.info{margin-top:26px;display:grid;gap:14px}
+.info dt{font-weight:700;font-size:.9rem}
+.info dd{color:var(--muted)}
+form{display:grid;gap:14px}
+label{font-size:.88rem;font-weight:600;display:grid;gap:6px}
+input,textarea,select{font:inherit;padding:13px 16px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px}
+textarea{min-height:110px;resize:vertical}
+#sent{color:var(--brass);font-weight:600;min-height:1.4em}
+
+/* shared header + footer */
+header{position:sticky;top:0;z-index:50;background:rgba(13,21,17,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+.logo{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--text)}
+.hn{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500}
+.hn a:not(.btn){color:var(--text)}
+.hn a:not(.btn):hover,.hn a.on{color:var(--tape)}
+.hn .btn{padding:10px 20px;font-size:.9rem}
+.hr{display:flex;gap:10px;align-items:center}
+.cartbtn{font:600 .9rem var(--ui);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:none;cursor:pointer;display:inline-flex;align-items:center}
+.cartbtn:hover{border-color:var(--tape)}
+.cartbtn .cn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--tape);color:#14170F;font-size:.78rem;font-weight:800;margin-left:6px;padding:0 6px}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 16px;font:600 .88rem var(--ui);border-radius:999px;cursor:pointer}
+@media(max-width:900px){.menu{display:block}.hn{display:none;position:absolute;top:100%;left:0;right:0;background:#0D1511;flex-direction:column;align-items:flex-start;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line)}.hn.open{display:flex}}
+footer{background:#0A100D;border-top:1px solid var(--line);color:var(--muted);padding:56px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{color:var(--text);font:600 .95rem var(--ui);margin-bottom:12px}
+footer a{display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .logo{display:block;margin-bottom:8px}
+.copy{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.buy{width:100%;margin-top:14px;padding:11px 18px}
+.btn.full{width:100%}
+.ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);border:1px solid var(--line);width:100%;max-width:460px;max-height:92vh;overflow-y:auto;border-radius:24px 24px 0 0;padding:26px 20px calc(24px + env(safe-area-inset-bottom,0px));position:relative}
+@media(min-width:620px){.ov{align-items:center}.sheet{border-radius:24px;padding:30px}}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--text);cursor:pointer;font-size:1.2rem}
+.lbl{font-weight:700;font-size:.9rem;margin:18px 0 8px}
+.sz{display:flex;gap:8px;flex-wrap:wrap}
+.sz button{min-width:50px;padding:9px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--text);font:700 .95rem var(--ui);cursor:pointer}
+.sz button.on{background:var(--text);color:var(--paper);border-color:var(--text)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.qty button{width:40px;height:40px;border:0;background:none;color:var(--text);font-size:1.2rem;cursor:pointer}
+.qty span{min-width:30px;text-align:center;font-weight:800}
+.err{color:#F0B45B;font-size:.88rem;font-weight:600;min-height:1.3em;margin:8px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--tape);color:#14170F;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);white-space:nowrap}
+.toast a{text-decoration:underline;margin-left:10px}
+[hidden]{display:none!important}
+.ph{overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph.hasimg svg,.ph.hasimg small,.ph.hasimg::before{display:none}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><a class="logo" href="#top">Eko Atelier</a><nav class="hn" id="hn" aria-label="Main"><a class="on" href="#top">Home</a><a href="#services">Services</a><a href="shop.html">Ready-made</a><a href="order.html">Fabrics</a><a href="#about">About</a><a href="#contact">Contact</a><a class="btn solid" href="measure.html">Measure online</a></nav><div class="hr"><a class="cartbtn" href="shop.html?cart=1">Cart<span class="cn">0</span></a><button class="menu" id="menu" aria-expanded="false" aria-controls="hn" type="button">Menu</button></div></div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+ <div>
+  <h1>Clothing tailored to fit you perfectly.</h1>
+  <p>Custom shirts, suits, native wear and dresses, cut from your measurements and sewn by master tailors. Order from home, delivered to your door.</p>
+  <div class="cta">
+   <a class="btn solid" href="measure.html">Start your custom order</a>
+   <a class="btn line" href="shop.html">Shop ready-made</a>
+  </div>
+ </div>
+ <div class="shot">
+  <div class="ph g">Hero image: tailor at work or model in a suit<img src="images/hero.jpg" alt="Tailor fitting a suit" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div>
+  <div class="badge"><b>2,500+</b>outfits delivered</div>
+ </div>
+</div></section>
+
+<section class="strip"><div class="wrap">
+ <div><b>Made to measure</b>Cut to your exact size</div>
+ <div><b>Premium fabrics</b>Sourced from trusted mills</div>
+ <div><b>Delivery nationwide</b>Within 7–14 days</div>
+ <div><b>Free adjustments</b>If it doesn't fit, we fix it</div>
+</div></section>
+
+<section id="services"><div class="wrap">
+ <div class="head"><div><h2>Our services</h2><p class="lead">Everything you need to look sharp, from a single shirt to a full wedding party.</p></div></div>
+ <div class="grid g3">
+  <article class="card svc"><div class="ph">Image: men's suits<img src="images/service-suits.jpg" alt="Tailored suits" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Suits &amp; jackets</h3><p>Single and double breasted, fully tailored and lined.</p></div></article>
+  <article class="card svc"><div class="ph">Image: shirts<img src="images/service-shirts.jpg" alt="Custom shirts" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Shirts</h3><p>Short and long sleeve, with the collar and cuff you choose.</p></div></article>
+  <article class="card svc"><div class="ph">Image: native wear<img src="images/service-native.jpg" alt="Native wear" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Native wear</h3><p>Senator sets, kaftans and agbada, cut with care.</p></div></article>
+  <article class="card svc"><div class="ph">Image: dresses<img src="images/service-dresses.jpg" alt="Dresses and gowns" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Dresses &amp; gowns</h3><p>Everyday dresses to event gowns, fitted to your shape.</p></div></article>
+  <article class="card svc"><div class="ph">Image: trousers<img src="images/service-trousers.jpg" alt="Tailored trousers" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Trousers &amp; skirts</h3><p>Waist, rise and length set exactly how you wear them.</p></div></article>
+  <article class="card svc"><div class="ph">Image: alterations<img src="images/service-alterations.jpg" alt="Alterations" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div class="body"><h3>Alterations</h3><p>Resize, shorten or re-cut clothes you already own.</p></div></article>
+ </div>
+</div></section>
+
+<section class="alt" id="ready"><div class="wrap">
+ <div class="head"><div><h2>Best sellers</h2><p class="lead">Our most-loved ready-to-wear pieces. Pick a size and buy in seconds.</p></div><a class="btn line" href="shop.html">View all pieces</a></div>
+ <div class="grid g4" id="products"></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+ <div class="head"><div><h2>How it works</h2><p class="lead">A custom outfit, ordered entirely from your phone.</p></div></div>
+ <div class="grid g3 steps">
+  <div class="step"><h3>Choose your style</h3><p>Pick a garment, or upload a photo of the look you want.</p></div>
+  <div class="step"><h3>Take your measurements</h3><p>Our guided tool shows you where and how to measure.</p></div>
+  <div class="step"><h3>We sew and deliver</h3><p>Your outfit is made in your chosen fabric and sent to you.</p></div>
+ </div>
+</div></section>
+
+<section class="alt" id="fabrics"><div class="wrap">
+ <div class="head"><div><h2>Fabrics and colours</h2><p class="lead">Cotton, linen, wool, Ankara, silk and lace, in colours for every occasion.</p></div><a class="btn line" href="order.html">Pick your fabric</a></div>
+ <div class="sw" id="sw"></div>
+</div></section>
+
+<section id="about"><div class="wrap split">
+ <div class="ph g">Image: studio or tailor portrait<img src="images/about.jpg" alt="Our studio" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div>
+ <div>
+  <h2>Craft you can feel in every stitch</h2>
+  <p class="lead">Eko Atelier has been dressing clients for over 12 years. Each garment is cut and sewn by hand in our studio.</p>
+  <ul class="ticks">
+   <li><b>Master tailors</b>Every piece is checked by a senior tailor before it ships.</li>
+   <li><b>Fit guarantee</b>Not happy with the fit? We adjust it at no cost.</li>
+   <li><b>Honest pricing</b>You see the full price before you pay.</li>
+  </ul>
+ </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+ <div class="head"><div><h2>What clients say</h2></div></div>
+ <div class="grid g3">
+  <div class="card quote"><p>The suit fit better than anything I've bought off a rack. I measured myself in ten minutes.</p><div class="who"><div class="ph g"><img src="images/avatar-1.jpg" alt="Customer photo" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div><b>Tunde A.</b>Lagos</div></div></div>
+  <div class="card quote"><p>My gown arrived early and the fabric was beautiful. Everyone asked who made it.</p><div class="who"><div class="ph g"><img src="images/avatar-2.jpg" alt="Customer photo" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div><b>Chioma E.</b>Abuja</div></div></div>
+  <div class="card quote"><p>They matched my reference photo almost exactly. I'm ordering the whole groomsmen set next.</p><div class="who"><div class="ph g"><img src="images/avatar-3.jpg" alt="Customer photo" loading="lazy" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()"></div><div><b>Emeka O.</b>Port Harcourt</div></div></div>
+ </div>
+</div></section>
+
+<section><div class="wrap"><div class="band">
+ <h2>Ready for clothes that fit?</h2>
+ <p>Measure yourself at home and place your first custom order in minutes.</p>
+ <div class="cta"><a class="btn solid" href="measure.html">Start your custom order</a><a class="btn line" href="#contact">Talk to a tailor</a></div>
+</div></div></section>
+
+<section class="alt" id="contact"><div class="wrap contact">
+ <div>
+  <h2>Get in touch</h2>
+  <p class="lead">Ask about a style, a fabric or a deadline. We reply within one working day.</p>
+  <dl class="info">
+   <div><dt>Studio</dt><dd>12 Adeola Street, Lagos</dd></div>
+   <div><dt>Hours</dt><dd>Mon–Sat, 9am – 6pm</dd></div>
+   <div><dt>Phone / WhatsApp</dt><dd>+234 803 061 2964</dd></div>
+   <div><dt>Email</dt><dd>hello@ekoatelier.example</dd></div>
+  </dl>
+  <div style="margin-top:34px"><h3 style="margin-bottom:6px">Questions</h3>
+   <details><summary>How long does an order take?</summary><p>Most custom orders are ready in 7 to 14 days, depending on the style.</p></details>
+   <details><summary>What if it doesn't fit?</summary><p>Send it back and we adjust it free of charge.</p></details>
+  </div>
+ </div>
+ <form id="form">
+  <label>Name<input required name="name" autocomplete="name"></label>
+  <label>Phone or email<input required name="contact"></label>
+  <label>What do you need?<select name="need"><option>A custom outfit</option><option>An alteration</option><option>A ready-made piece</option><option>Something else</option></select></label>
+  <label>Message<textarea name="msg"></textarea></label>
+  <button class="btn solid" type="submit">Send via WhatsApp</button>
+  <p id="sent" role="status"></p>
+ </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <div class="fgrid">
+  <div><a class="logo" href="#top" style="font-size:1.8rem">Eko Atelier</a><p style="max-width:30ch">Custom clothing made to your measure, delivered to your door.</p></div>
+  <div><h4>Shop</h4><a href="shop.html">Ready-made</a><a href="measure.html">Custom order</a><a href="#fabrics">Fabrics</a></div>
+  <div><h4>Company</h4><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
+  <div><h4>Follow</h4><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">TikTok</a></div>
+ </div>
+ <div class="copy"><span>© 2026 Eko Atelier</span><span>All rights reserved</span></div>
+</div></footer>
+
+<div class="ov" id="bo" hidden><div class="sheet" role="dialog" aria-modal="true" aria-label="Buy now"><button class="x" data-close aria-label="Close">×</button><div id="bb"></div></div></div>
+<div class="toast" id="ts" hidden>Added to cart<a href="shop.html?cart=1">View cart</a></div>
+<script>
+var WA='2348030612964',$=function(i){return document.getElementById(i)},N=function(n){return '₦'+n.toLocaleString('en-NG')};
+var BP=[{id:1,n:'Navy senator set',p:48000,s:['S','M','L','XL','XXL'],h:'#23364A'},{id:2,n:'Sage linen shirt',p:22500,s:['S','M','L','XL','XXL'],h:'#6F8470'},{id:3,n:'Charcoal trousers',p:26000,s:['30','32','34','36','38'],h:'#3A3F42'},{id:4,n:'Wine wrap dress',p:38000,s:['8','10','12','14','16'],h:'#6B2A3A'}];
+$('products').innerHTML=BP.map(function(x){return '<article class="card"><div class="ph" style="background:'+x.h+';color:rgba(255,255,255,.75)">Image: '+x.n+'<img src="images/product-'+x.id+'.jpg" alt="'+x.n+'" loading="lazy" onload="this.parentNode.classList.add(\'hasimg\')" onerror="this.remove()"></div><div class="body"><h3>'+x.n+'</h3><p>Sizes '+x.s[0]+' to '+x.s[x.s.length-1]+'</p><div class="meta"><span class="price">'+N(x.p)+'</span><span class="tag">Bestseller</span></div><button class="btn solid buy" data-id="'+x.id+'" type="button">Buy now</button></div></article>'}).join('');
+var B={p:null,s:null,q:1};
+function bdraw(){var p=B.p;$('bb').innerHTML='<h2 style="margin-bottom:4px">'+p.n+'</h2><div style="font-weight:800;font-size:1.4rem">'+N(p.p)+'</div><div class="lbl">Size</div><div class="sz">'+p.s.map(function(s){return '<button type="button" data-s="'+s+'" class="'+(B.s===s?'on':'')+'">'+s+'</button>'}).join('')+'</div><div class="lbl">Quantity</div><div class="qty"><button type="button" id="bm" aria-label="Fewer">−</button><span>'+B.q+'</span><button type="button" id="bp" aria-label="More">+</button></div><p class="err" id="be" role="status"></p><button class="btn solid full" id="badd" type="button">Add to cart · '+N(p.p*B.q)+'</button><button class="btn full" id="bwa" type="button" style="margin-top:10px">Order on WhatsApp</button>'}
+function oo(){$('bo').hidden=false;document.body.style.overflow='hidden'}
+function cc(){$('bo').hidden=true;document.body.style.overflow=''}
+$('products').onclick=function(e){var b=e.target.closest('.buy');if(!b)return;B.p=BP.filter(function(x){return x.id===+b.dataset.id})[0];B.s=null;B.q=1;bdraw();oo()};
+document.addEventListener('click',function(e){if(e.target.hasAttribute&&(e.target.hasAttribute('data-close')||e.target.id==='bo'))cc()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cc()});
+$('bb').onclick=function(e){var t=e.target;
+ if(t.dataset&&t.dataset.s){B.s=t.dataset.s;bdraw()}
+ else if(t.id==='bm'){if(B.q>1){B.q--;bdraw()}}
+ else if(t.id==='bp'){if(B.q<10){B.q++;bdraw()}}
+ else if(t.id==='badd'||t.id==='bwa'){
+  if(!B.s){$('be').textContent='Choose a size first.';return}
+  if(t.id==='bwa'){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Hello Eko Atelier, I would like to order: '+B.p.n+' (size '+B.s+') x'+B.q+'. Total: '+N(B.p.p*B.q)),'_blank');return}
+  var c=[];try{c=JSON.parse(localStorage.getItem('aurelle_cart')||'[]')}catch(x){}
+  var f=c.filter(function(i){return i.id===B.p.id&&i.s===B.s})[0];if(f)f.q=Math.min(10,f.q+B.q);else c.push({id:B.p.id,s:B.s,q:B.q});
+  try{localStorage.setItem('aurelle_cart',JSON.stringify(c))}catch(x){}
+  updBadge();cc();var ts=$('ts');ts.hidden=false;clearTimeout(window._t);window._t=setTimeout(function(){ts.hidden=true},5000)}
+};
+var f=[['Cotton','#E8E1D0'],['Linen','#B9B39B'],['Ankara','#C0602B'],['Wool','#4A4F57'],['Silk','#8E3B55'],['Lace','#D9D4DA']];
+document.getElementById('sw').innerHTML=f.map(function(x){return '<div><i style="background:'+x[1]+'"></i>'+x[0]+'</div>'}).join('');
+document.getElementById('form').onsubmit=function(e){e.preventDefault();var f=this.elements,m='Hello Eko Atelier,\n'+f['msg'].value.trim()+'\n\nNeed: '+f['need'].value+'\nName: '+f['name'].value.trim()+'\nContact: '+f['contact'].value.trim();window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m),'_blank');document.getElementById('sent').textContent='WhatsApp opened with your message. Tap Send to reach us.';this.reset()};
+</script>
+<script>
+(function(){var m=document.getElementById('menu'),n=document.getElementById('hn');
+m.onclick=function(){var o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)};
+n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
+window.updBadge=function(){var t=0;try{JSON.parse(localStorage.getItem('aurelle_cart')||'[]').forEach(function(c){t+=c.q})}catch(e){}[].forEach.call(document.querySelectorAll('.cn'),function(e){e.textContent=t})};
+updBadge();})();
+</script>
+</body>
+</html>

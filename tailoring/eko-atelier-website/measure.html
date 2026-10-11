@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Measure yourself — Eko Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D1511;--s1:#15211B;--s2:#1D2D25;--line:#2C4036;--text:#EEF1EC;--muted:#A9B6AF;--tape:#F4C430;--brass:#C9A66B;--stage:#1B2C24;--body:#4B6657;
+--display:'Cormorant Garamond',Georgia,serif;--ui:'Manrope',system-ui,sans-serif;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*{box-sizing:border-box;margin:0}
+html,body{max-width:100%}
+body{overflow-x:clip}
+body{background:var(--bg);color:var(--text);font:400 16px/1.6 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,8vw,4.4rem)}
+h2{font-size:clamp(1.9rem,5vw,2.6rem)}
+h3{font-size:1.45rem}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+.lead{color:var(--muted);margin-top:10px;max-width:52ch}
+main.wrap{padding-top:clamp(52px,8vw,92px);padding-bottom:clamp(56px,8vw,90px)}
+.btn{display:inline-block;text-align:center;padding:14px 26px;border-radius:999px;font-weight:700;font-size:.97rem;border:1.5px solid var(--text);background:transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn.solid{background:var(--tape);border-color:var(--tape);color:#14170F}
+.btn.solid:hover{background:#fff;border-color:#fff}
+.btn[disabled]{opacity:.4;pointer-events:none}
+/* step 1 */
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 20px;align-items:center}
+.search{flex:1 1 240px;min-width:0;padding:13px 18px;border-radius:999px;border:1px solid var(--line);background:var(--s1);font-size:1rem}
+.search::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--s1);font-weight:600;font-size:.88rem;cursor:pointer}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:760px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+@media(min-width:1040px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tile{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:18px 16px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:transform .2s,border-color .2s,background .2s}
+.tile:hover{transform:translateY(-3px);border-color:var(--tape);background:var(--s2)}
+.tile svg{width:46px;height:46px;fill:var(--brass);margin-bottom:8px}
+.tile b{font-size:1rem;line-height:1.25}
+.tile p{color:var(--muted);font-size:.84rem;line-height:1.4}
+.tile small{margin-top:8px;font-size:.76rem;color:var(--tape);font-weight:700}
+.empty{color:var(--muted);padding:30px 0}
+.info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
+@media(max-width:760px){.info{grid-template-columns:minmax(0,1fr)}}
+.info div{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:22px}
+.info b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:600;margin-bottom:4px}
+.info p{color:var(--muted);font-size:.93rem}
+.how3{margin-top:56px}
+.how3 ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px;counter-reset:z}
+@media(max-width:760px){.how3 ol{grid-template-columns:minmax(0,1fr)}}
+.how3 li{counter-increment:z;display:flex;gap:14px;align-items:flex-start;color:var(--muted)}
+.how3 li::before{content:counter(z);flex:none;width:34px;height:34px;border-radius:50%;background:var(--tape);color:#14170F;font-weight:800;display:grid;place-items:center}
+.how3 li b{display:block;color:var(--text)}
+/* step 2 */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.link{background:none;border:0;cursor:pointer;font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:4px 0}
+.wk{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media(min-width:900px){.wk{grid-template-columns:320px minmax(0,1fr);gap:36px;align-items:start}}
+.demo{position:sticky;top:68px;z-index:20;background:var(--bg);padding:10px 0 8px}
+@media(min-width:900px){.demo{top:84px;padding:0}}
+.stage{position:relative;overflow:hidden;background:var(--stage);border:1px solid var(--line);border-radius:20px;height:210px}
+@media(min-width:900px){.stage{height:auto;aspect-ratio:4/5}}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fig{fill:var(--body)}
+.fig2{stroke:var(--body);stroke-linecap:round;fill:none}
+.tape{fill:none;stroke:var(--tape);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 3.2s ease-in-out infinite}
+.ticks{fill:none;stroke:#14170F;stroke-opacity:.7;opacity:0;animation:tk 3.2s infinite}
+.pulse{fill:var(--tape);stroke:#fff;transform-box:fill-box;transform-origin:center;animation:pulse 1.6s ease-out infinite}
+.pin{fill:#fff;stroke:var(--tape)}
+.lab rect{fill:var(--tape)}
+.lab text{fill:#14170F;font-family:var(--ui);font-weight:800}
+@keyframes draw{0%{stroke-dashoffset:1}55%,100%{stroke-dashoffset:0}}
+@keyframes tk{0%,45%{opacity:0}62%,100%{opacity:1}}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){.tape{animation:none;stroke-dashoffset:0}.ticks{animation:none;opacity:1}.pulse,.pin{display:none}}
+.cap{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(13,21,17,.88);border:1px solid var(--line);border-radius:12px;padding:7px 12px;font-size:.82rem;font-weight:600;text-align:center}
+.cap b{color:var(--tape)}
+.list{display:grid;gap:10px}
+.lh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.prog{color:var(--muted);font-size:.9rem;font-weight:600}
+.unit{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.unit button{border:0;background:none;padding:7px 18px;font-weight:700;font-size:.88rem;cursor:pointer}
+.unit .on{background:var(--text);color:var(--bg)}
+.m{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;scroll-margin-top:290px;transition:border-color .2s,background .2s}
+@media(min-width:900px){.m{scroll-margin-top:100px}}
+.m.on{border-color:var(--tape);background:var(--s2)}
+.mh{display:flex;align-items:center;gap:12px}
+.nb{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:.85rem;color:var(--muted)}
+.m.done .nb{background:var(--tape);border-color:var(--tape);color:#14170F}
+.mh b{flex:1;min-width:0;font-size:1rem}
+.in{display:flex;align-items:center;gap:6px;flex:none}
+.in input{width:92px;text-align:right;font:700 1.15rem var(--ui);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.in em{font-style:normal;color:var(--muted);font-size:.85rem;width:24px}
+.mb{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:.93rem}
+.m.on .mb{display:block}
+.mb ol{list-style:none;padding:0;display:grid;gap:8px;counter-reset:q}
+.mb li{counter-increment:q;display:flex;gap:10px}
+.mb li::before{content:counter(q);flex:none;width:22px;height:22px;border-radius:50%;background:var(--tape);color:#14170F;font-weight:800;font-size:.75rem;display:grid;place-items:center;margin-top:2px}
+.warn{color:#F0B45B;font-size:.82rem;font-weight:600;margin-top:8px}
+.warn:empty{display:none}
+.dock{position:sticky;bottom:0;z-index:25;background:linear-gradient(rgba(13,21,17,0),var(--bg) 30%);padding:22px 0 calc(12px + env(safe-area-inset-bottom,0px));margin-top:8px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.dock span{color:var(--muted);font-size:.9rem;font-weight:600}
+/* review */
+.rev{max-width:640px}
+.rl{margin:22px 0;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row b{font-size:1.1rem}
+.row button{background:none;border:0;color:var(--tape);font-weight:700;text-decoration:underline;cursor:pointer;margin-left:12px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.cta .btn{flex:1 1 220px}
+.note{color:var(--muted);font-size:.9rem}
+[hidden]{display:none!important}
+
+/* shared header + footer */
+header{position:sticky;top:0;z-index:50;background:rgba(13,21,17,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+.logo{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--text)}
+.hn{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500}
+.hn a:not(.btn){color:var(--text)}
+.hn a:not(.btn):hover,.hn a.on{color:var(--tape)}
+.hn .btn{padding:10px 20px;font-size:.9rem}
+.hr{display:flex;gap:10px;align-items:center}
+.cartbtn{font:600 .9rem var(--ui);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:none;cursor:pointer;display:inline-flex;align-items:center}
+.cartbtn:hover{border-color:var(--tape)}
+.cartbtn .cn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--tape);color:#14170F;font-size:.78rem;font-weight:800;margin-left:6px;padding:0 6px}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 16px;font:600 .88rem var(--ui);border-radius:999px;cursor:pointer}
+@media(max-width:900px){.menu{display:block}.hn{display:none;position:absolute;top:100%;left:0;right:0;background:#0D1511;flex-direction:column;align-items:flex-start;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line)}.hn.open{display:flex}}
+footer{background:#0A100D;border-top:1px solid var(--line);color:var(--muted);padding:56px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{color:var(--text);font:600 .95rem var(--ui);margin-bottom:12px}
+footer a{display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .logo{display:block;margin-bottom:8px}
+.copy{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.resume{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:var(--s2);border:1px solid var(--tape);border-radius:16px;padding:16px 20px;margin-top:22px}
+.resume b{display:block}.resume span{color:var(--muted);font-size:.9rem}
+.resume .btns{display:flex;gap:10px;flex-wrap:wrap}.resume .btn{padding:10px 20px}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><a class="logo" href="index.html">Eko Atelier</a><nav class="hn" id="hn" aria-label="Main"><a href="index.html">Home</a><a href="index.html#services">Services</a><a href="shop.html">Ready-made</a><a href="order.html">Fabrics</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a class="btn solid" href="measure.html">Measure online</a></nav><div class="hr"><a class="cartbtn" href="shop.html?cart=1">Cart<span class="cn">0</span></a><button class="menu" id="menu" aria-expanded="false" aria-controls="hn" type="button">Menu</button></div></div></header>
+
+<main class="wrap">
+ <section id="s1">
+  <h1>Take your measurements</h1>
+  <p class="lead">Pick the garment you want sewn. We will show you exactly where to place the tape for every measurement.</p>
+  <div class="resume" id="resume" hidden></div>
+  <div class="tools"><input class="search" id="q" type="search" placeholder="Search kaftan, shorts, gown..." aria-label="Search garments"><div class="chips" id="chips"></div></div>
+  <div class="tiles" id="garments"></div>
+  <p class="empty" id="none" hidden>No garment matches your search.</p>
+  <div class="how3"><h2>How it works</h2>
+   <ol><li><span><b>Pick a garment</b>Single pieces or full sets, for men and women.</span></li><li><span><b>Measure with the demo</b>Watch the tape move to the exact spot, then enter the number.</span></li><li><span><b>Review and order</b>Check your sizes, then choose style and fabric.</span></li></ol></div>
+  <div class="info">
+   <div><b>A soft tape</b><p>Use a flexible sewing tape. No tape? A string and a ruler work.</p></div>
+   <div><b>A helper</b><p>Back and shoulder measurements are easier when someone holds the tape.</p></div>
+   <div><b>Light clothing</b><p>Measure over thin, fitted clothes. Avoid jackets and bulky layers.</p></div>
+  </div>
+ </section>
+
+ <section id="s2" hidden>
+  <div class="top"><button class="link" id="chg" type="button">Change garment</button><button class="link" id="clr" type="button">Clear this garment</button><h3 id="gname"></h3></div>
+  <div class="wk">
+   <div class="demo"><div class="stage">
+    <svg id="svg" viewBox="0 0 200 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Body diagram showing where to place the tape">
+     <g class="fig"><circle cx="100" cy="38" r="20"/><rect x="91" y="52" width="18" height="20"/><polygon points="54,84 146,84 139,125 132,170 139,218 61,218 68,170 61,125"/></g>
+     <g class="fig2"><line x1="50" y1="92" x2="30" y2="205" stroke-width="16"/><line x1="150" y1="92" x2="170" y2="205" stroke-width="16"/><line x1="83" y1="215" x2="83" y2="378" stroke-width="32"/><line x1="117" y1="215" x2="117" y2="378" stroke-width="32"/></g>
+     <g id="guide"></g>
+    </svg>
+    <div class="cap" id="cap"></div>
+   </div></div>
+   <div>
+    <div class="lh"><span class="prog" id="prog"></span><div class="unit"><button id="ucm" class="on" type="button">cm</button><button id="uin" type="button">inches</button></div></div>
+    <div class="list" id="list"></div>
+    <div class="dock"><span id="dk"></span><button class="btn solid" id="rv" type="button">Review measurements</button></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="s3" hidden>
+  <div class="rev">
+   <h2>Your measurements</h2>
+   <p class="lead" id="rsub"></p>
+   <div class="rl" id="rl"></div>
+   <p class="note">Saved on this device, ready for your order.</p>
+   <div class="cta"><button class="btn" id="redo" type="button">Another garment</button><a class="btn solid" id="gonext" href="order.html">Continue to style and fabric</a></div>
+  </div>
+ </section>
+</main>
+<footer><div class="wrap"><div class="fgrid">
+<div><a class="logo" href="index.html">Eko Atelier</a><p style="max-width:30ch">Custom clothing made to your measure, delivered to your door.</p></div>
+<div><h4>Shop</h4><a href="shop.html">Ready-made</a><a href="measure.html">Custom order</a><a href="order.html">Style and fabric</a></div>
+<div><h4>Company</h4><a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+<div><h4>Follow</h4><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">TikTok</a></div>
+</div><div class="copy"><span>© 2026 Eko Atelier</span><span>All rights reserved</span></div></div></footer>
+
+
+<script>
+var M={
+ neck:{n:'Neck',g:{t:'e',cx:100,cy:66,rx:14,ry:4},c:'Around the base of the neck',h:['Wrap the tape around the base of your neck.','Leave one finger of space between tape and neck.'],r:[30,50]},
+ shoulder:{n:'Shoulder',g:{t:'l',x1:56,y1:84,x2:144,y2:84},c:'Shoulder bone to shoulder bone',h:['Stand straight and relaxed.','Measure across the back from one shoulder bone to the other.'],r:[35,60]},
+ chest:{n:'Chest',g:{t:'e',cx:100,cy:122,rx:40,ry:7},c:'Around the fullest part of the chest',h:['Wrap the tape under your arms, across the fullest part of the chest.','Keep it level at the back. Breathe normally.'],r:[75,150]},
+ bust:{n:'Bust',g:{t:'e',cx:100,cy:122,rx:40,ry:7},c:'Around the fullest part of the bust',h:['Wrap the tape under your arms, across the fullest part of the bust.','Keep it level at the back. Breathe normally.'],r:[70,140]},
+ waist:{n:'Waist',g:{t:'e',cx:100,cy:170,rx:33,ry:6},c:'Around your natural waist',h:['Find the narrowest part of your torso.','Keep the tape level and relaxed. Do not hold your breath in.'],r:[55,140]},
+ hip:{n:'Hip',g:{t:'e',cx:100,cy:212,rx:39,ry:7},c:'Around the fullest part of the hips',h:['Stand with your feet together.','Wrap the tape around the fullest part of your hips.'],r:[75,150]},
+ bicep:{n:'Upper arm',g:{t:'e',cx:43,cy:130,rx:9,ry:3},c:'Around the fullest part of the upper arm',h:['Relax your arm by your side.','Wrap the tape around the fullest part of the upper arm.'],r:[20,50]},
+ wrist:{n:'Wrist',g:{t:'e',cx:31,cy:200,rx:7,ry:3},c:'Around the wrist bone',h:['Wrap the tape around your wrist bone.','Leave room for a watch if you wear one.'],r:[13,26]},
+ sleeveS:{n:'Sleeve length (short)',g:{t:'l',x1:54,y1:88,x2:44,y2:135},c:'Shoulder tip to where the sleeve ends',h:['Start at the tip of your shoulder.','Run the tape down the outside of the arm to where the sleeve should end.'],r:[12,40]},
+ sleeveL:{n:'Sleeve length (long)',g:{t:'l',x1:54,y1:88,x2:31,y2:203},c:'Shoulder tip to wrist bone',h:['Start at the tip of your shoulder.','Run the tape down the outside of the slightly bent arm to the wrist bone.'],r:[50,80]},
+ shirtLen:{n:'Top length',g:{t:'l',x1:100,y1:62,x2:100,y2:236},c:'Base of the neck to where the top ends',h:['Start at the base of the neck at the back.','Run the tape straight down to where the top should end.'],r:[60,100]},
+ jacketLen:{n:'Jacket length',g:{t:'l',x1:100,y1:62,x2:100,y2:252},c:'Base of the neck to where the jacket ends',h:['Start at the base of the neck at the back.','Run the tape straight down to where the jacket should end.'],r:[60,100]},
+ wcLen:{n:'Waistcoat length',g:{t:'l',x1:100,y1:62,x2:100,y2:215},c:'Base of the neck to where it ends',h:['Start at the base of the neck at the back.','Run the tape straight down to where the waistcoat should end.'],r:[45,80]},
+ blLen:{n:'Blouse length',g:{t:'l',x1:100,y1:62,x2:100,y2:200},c:'Base of the neck to where the blouse ends',h:['Start at the base of the neck at the back.','Run the tape straight down to where the blouse should end.'],r:[35,75]},
+ kfLen:{n:'Kaftan length',g:{t:'l',x1:100,y1:62,x2:100,y2:345},c:'Base of the neck to the hem',h:['Start at the base of the neck at the back.','Run the tape straight down to where the hem should end.'],r:[85,165]},
+ napeWaist:{n:'Neck to waist',g:{t:'l',x1:100,y1:64,x2:100,y2:170},c:'Base of the neck to your waist',h:['Start at the base of the neck at the back.','Run the tape straight down to your natural waist.'],r:[35,55]},
+ dressLen:{n:'Dress length',g:{t:'l',x1:100,y1:62,x2:100,y2:330},c:'Base of the neck to the hem',h:['Start at the base of the neck.','Run the tape straight down to where the hem should end.'],r:[70,170]},
+ bodyLen:{n:'Full body length',g:{t:'l',x1:100,y1:62,x2:100,y2:378},c:'Base of the neck to the ankle',h:['Start at the base of the neck at the front.','Run the tape through the crotch down to the ankle.'],r:[120,190]},
+ skirtLen:{n:'Skirt length',g:{t:'l',x1:100,y1:170,x2:100,y2:300},c:'Waist to the hem',h:['Start at your natural waist.','Run the tape straight down to where the skirt should end.'],r:[35,110]},
+ rise:{n:'Rise',g:{t:'l',x1:100,y1:170,x2:100,y2:226},c:'Waist to crotch',h:['Sit on a flat chair.','Measure from your waist down the side to the seat of the chair.'],r:[20,40]},
+ thigh:{n:'Thigh',g:{t:'e',cx:117,cy:252,rx:17,ry:4.5},c:'Around the fullest part of the thigh',h:['Stand with your weight on both feet.','Wrap the tape around the fullest part of the upper thigh.'],r:[40,90]},
+ knee:{n:'Knee',g:{t:'e',cx:117,cy:305,rx:15,ry:4},c:'Around the knee',h:['Stand straight with legs relaxed.','Wrap the tape around the middle of the knee.'],r:[30,55]},
+ bottom:{n:'Leg opening',g:{t:'e',cx:117,cy:372,rx:14,ry:3.5},c:'Around the ankle',h:['Wrap the tape around the ankle.','Add room if you want a wide trouser leg.'],r:[30,55]},
+ inseam:{n:'Inseam',g:{t:'l',x1:101,y1:226,x2:101,y2:378},c:'Crotch to ankle, inside of the leg',h:['Start high in the crotch.','Run the tape down the inside of the leg to where the trousers should end.'],r:[55,100]},
+ outseam:{n:'Trouser length',g:{t:'l',x1:133,y1:170,x2:133,y2:378},c:'Waist to ankle, outside of the leg',h:['Start at your natural waist.','Run the tape down the outside of the leg to where the trousers should end.'],r:[85,130]},
+ shortsLen:{n:'Shorts length',g:{t:'l',x1:133,y1:170,x2:133,y2:300},c:'Waist to where the shorts end',h:['Start at your natural waist.','Run the tape down the outside of the leg to where the shorts should end.'],r:[30,70]}
+};
+var T={ss:['neck','shoulder','chest','waist','shirtLen','sleeveS','bicep'],ls:['neck','shoulder','chest','waist','shirtLen','sleeveL','bicep','wrist'],
+ jk:['neck','shoulder','chest','waist','hip','jacketLen','sleeveL','bicep'],wc:['shoulder','chest','waist','wcLen'],
+ tr:['waist','hip','rise','thigh','knee','bottom','inseam','outseam'],sh:['waist','hip','rise','thigh','shortsLen'],sk:['waist','hip','skirtLen'],
+ kf:['neck','shoulder','chest','waist','kfLen','sleeveL','bicep','wrist'],bl:['shoulder','bust','waist','blLen','sleeveS','bicep']};
+function U(){var o=[];[].slice.call(arguments).forEach(function(a){a.forEach(function(k){if(o.indexOf(k)<0)o.push(k)})});return o}
+var I={ss:'M22 8l-14 7 5 11 6-3v30h24V23l6 3 5-11-14-7c-2 4-5 6-8 6s-6-2-8-6z',
+ ls:'M22 8L6 18l4 30 7-2-2-20 7-3v31h20V23l7 3-2 20 7 2 4-30L42 8c-2 4-5 6-10 6s-8-2-10-6z',
+ tr:'M18 6h28l3 52H35L32 24l-3 34H15z',sh:'M16 12h32l4 30H36l-4-14-4 14H12z',
+ jk:'M24 6l8 10 8-10 14 8-4 16-6-2v30H20V28l-6 2-4-16z',wc:'M22 6l10 12 10-12 6 6-3 22v22H19V34l-3-22z',
+ dr:'M25 6h14l1 14 10 38H14l10-38z',sk:'M22 12h20l12 44H10z',
+ kf:'M24 6h16l4 8 10 6-2 12-8-3v33H20V29l-8 3-2-12 10-6z',js:'M22 6h20l4 16-6 4 4 32H35l-3-24-3 24H18l4-32-6-4z',
+ set:'M14 6l-8 4 3 7 4-2v15h14V15l4 2 3-7-8-4c-1 2-3 3-5 3s-4-1-5-3zM40 30h14l2 28H48l-1-14-2 14H38z'};
+var G=[
+ {id:'ss',c:'Tops',n:'Short-sleeve shirt',d:'Casual and office shirts',i:'ss',k:T.ss},
+ {id:'ls',c:'Tops',n:'Long-sleeve shirt',d:'Dress shirts with cuffs',i:'ls',k:T.ls},
+ {id:'po',c:'Tops',n:'Polo',d:'Collared knit or cotton polo',i:'ss',k:T.ss},
+ {id:'jk',c:'Tops',n:'Jacket or blazer',d:'Single or double breasted',i:'jk',k:T.jk},
+ {id:'wc',c:'Tops',n:'Waistcoat',d:'Formal vest for suits',i:'wc',k:T.wc},
+ {id:'tr',c:'Bottoms',n:'Trousers',d:'Chinos, slacks, suit trousers',i:'tr',k:T.tr},
+ {id:'sh',c:'Bottoms',n:'Shorts',d:'Casual and tailored shorts',i:'sh',k:T.sh},
+ {id:'sk',c:'Bottoms',n:'Skirt',d:'Pencil, A-line, long skirts',i:'sk',k:T.sk},
+ {id:'kf',c:'Native',n:'Kaftan',d:'Long and short kaftans',i:'kf',k:T.kf},
+ {id:'ag',c:'Native',n:'Agbada',d:'Wide flowing outer robe',i:'kf',k:['shoulder','chest','kfLen','sleeveL','wrist']},
+ {id:'ds',c:'Native',n:'Dashiki',d:'Loose pullover top',i:'ss',k:['neck','shoulder','chest','shirtLen','sleeveS','bicep']},
+ {id:'bu',c:'Native',n:'Buba',d:'Traditional women\'s top',i:'ss',k:T.bl},
+ {id:'se',c:'Sets',n:'Senator set',d:'Top and trousers, up and down',i:'set',k:U(T.ls,T.tr)},
+ {id:'ks',c:'Sets',n:'Kaftan set',d:'Kaftan and matching trousers',i:'set',k:U(T.kf,T.tr)},
+ {id:'su',c:'Sets',n:'Two-piece suit',d:'Jacket and trousers',i:'set',k:U(T.jk,T.tr)},
+ {id:'ts',c:'Sets',n:'Shirt and shorts set',d:'Matching summer set',i:'set',k:U(T.ss,T.sh)},
+ {id:'bs',c:'Sets',n:'Blouse and skirt set',d:'Up and down for women',i:'set',k:U(T.bl,T.sk)},
+ {id:'dr',c:'Women',n:'Dress',d:'Everyday and event dresses',i:'dr',k:['shoulder','bust','waist','hip','napeWaist','dressLen']},
+ {id:'gw',c:'Women',n:'Gown',d:'Long evening and bridal gowns',i:'dr',k:['shoulder','bust','waist','hip','napeWaist','dressLen','sleeveL','bicep']},
+ {id:'bl',c:'Women',n:'Blouse',d:'Fitted and flowing blouses',i:'ss',k:T.bl},
+ {id:'ju',c:'Women',n:'Jumpsuit',d:'One-piece top and trousers',i:'js',k:['shoulder','bust','waist','hip','rise','bodyLen']}
+];
+var CATS=['All','Tops','Bottoms','Native','Sets','Women'];
+var $=function(i){return document.getElementById(i)};
+var S={g:null,a:0,u:'cm',v:{},cat:'All',cam:{x:0,y:0,w:200,h:400}},raf=0;
+var ST={cur:null,items:{}};
+try{var _s=JSON.parse(localStorage.getItem('aurelle_meas')||'null');if(_s&&_s.items)ST=_s}catch(e){}
+S.u=ST.u||'cm';
+function persist(){if(S.g){var l={};S.g.k.forEach(function(k){l[k]=M[k].n});ST.items[S.g.id]={v:S.v,t:Date.now(),n:S.g.k.length,l:l};ST.cur=S.g.id}ST.u=S.u;try{localStorage.setItem('aurelle_meas',JSON.stringify(ST))}catch(e){}}
+function cnt(g){var it=ST.items[g.id];return it?g.k.filter(function(k){return it.v[k]}).length:0}
+function gid(id){return G.filter(function(g){return g.id===id})[0]}
+function pick(id){S.g=gid(id);S.v=(ST.items[id]&&ST.items[id].v)||{};var i=S.g.k.findIndex(function(k){return !S.v[k]});S.a=i<0?0:i;persist();show(2);build(true)}
+function resume(){var g=ST.cur&&gid(ST.cur),c=g?cnt(g):0,r=$('resume');if(!g||!c){r.hidden=true;return}
+ r.hidden=false;r.innerHTML='<div><b>Continue your '+g.n.toLowerCase()+'</b><span>'+c+' of '+g.k.length+' measurements saved on this device</span></div><div class="btns"><button class="btn solid" data-a="go" type="button">Continue</button><button class="btn" data-a="reset" type="button">Start over</button></div>'}
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+function show(n){[1,2,3].forEach(function(i){$('s'+i).hidden=i!==n});window.scrollTo(0,0)}
+function grid(){
+ var q=$('q').value.toLowerCase().trim();
+ var l=G.filter(function(g){return(S.cat==='All'||g.c===S.cat)&&(!q||(g.n+' '+g.d).toLowerCase().indexOf(q)>=0)});
+ $('garments').innerHTML=l.map(function(g){return '<button class="tile" data-id="'+g.id+'"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="'+I[g.i]+'"/></svg><b>'+g.n+'</b><p>'+g.d+'</p><small>'+(cnt(g)?cnt(g)+' of '+g.k.length+' done':g.k.length+' measurements')+'</small></button>'}).join('');
+ $('none').hidden=l.length>0;
+}
+$('chips').innerHTML=CATS.map(function(c){return '<button class="chip'+(c==='All'?' on':'')+'" data-c="'+c+'">'+c+'</button>'}).join('');
+$('chips').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;S.cat=b.dataset.c;[].forEach.call($('chips').children,function(x){x.classList.toggle('on',x===b)});grid()};
+$('q').oninput=grid;
+$('garments').onclick=function(e){var b=e.target.closest('.tile');if(!b)return;pick(b.dataset.id)};
+$('resume').onclick=function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.a==='go')pick(ST.cur);else{delete ST.items[ST.cur];ST.cur=null;persist();resume();grid()}};
+$('chg').onclick=function(){persist();grid();resume();show(1)};
+$('clr').onclick=function(){if(confirm('Clear all measurements for this garment?')){S.v={};persist();build(true)}};
+function toU(c){return S.u==='cm'?c:Math.round(c/2.54*10)/10}
+function toCm(x){return S.u==='cm'?x:x*2.54}
+function bounds(g){return g.t==='e'?[g.cx-g.rx,g.cy-g.ry,g.cx+g.rx,g.cy+g.ry]:[Math.min(g.x1,g.x2),Math.min(g.y1,g.y2),Math.max(g.x1,g.x2),Math.max(g.y1,g.y2)]}
+function target(g){
+ var b=bounds(g),svg=$('svg'),r=svg.clientWidth&&svg.clientHeight?svg.clientWidth/svg.clientHeight:1;
+ var bw=b[2]-b[0],bh=b[3]-b[1],h=Math.max(bh+80,(bw+80)/r,130);h=Math.min(h,420);var w=h*r;
+ var cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2,x=cx-w/2,y=cy-h/2;
+ if(w>=240)x=100-w/2;else x=Math.min(Math.max(x,-20),220-w);
+ y=Math.min(Math.max(y,-10),410-h);return {x:x,y:y,w:w,h:h};
+}
+function setVB(c){$('svg').setAttribute('viewBox',c.x+' '+c.y+' '+c.w+' '+c.h)}
+function cam(t,instant){
+ cancelAnimationFrame(raf);var f=S.cam,t0=null;
+ if(instant||reduce){S.cam=t;setVB(t);return}
+ (function s(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/650,1),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,c={};
+  for(var k in t)c[k]=f[k]+(t[k]-f[k])*e;S.cam=c;setVB(c);if(p<1)raf=requestAnimationFrame(s)})(performance.now());
+}
+function guide(g,t){
+ var sw=t.h*0.03,d,sp,ep,lab='';
+ if(g.t==='e'){d='M'+(g.cx-g.rx)+' '+g.cy+'a'+g.rx+' '+g.ry+' 0 1 0 '+2*g.rx+' 0a'+g.rx+' '+g.ry+' 0 1 0 '+(-2*g.rx)+' 0';sp=[g.cx-g.rx,g.cy]}
+ else{d='M'+g.x1+' '+g.y1+'L'+g.x2+' '+g.y2;sp=[g.x1,g.y1];ep=[g.x2,g.y2];
+  var fs=sw*1.9,pill=function(p,txt,right){var w=txt.length*fs*.66+fs*1.1,x=right?p[0]+sw*2:p[0]-sw*2-w;return '<g class="lab"><rect x="'+x+'" y="'+(p[1]-fs*.8)+'" width="'+w+'" height="'+fs*1.6+'" rx="'+fs*.8+'"/><text x="'+(x+w/2)+'" y="'+(p[1]+fs*.3)+'" text-anchor="middle" style="font-size:'+fs+'px">'+txt+'</text></g>'};
+  lab=pill(sp,'Start',sp[0]>=100)+pill(ep,'End',ep[0]>=100)}
+ var h='<path class="tape" pathLength="1" stroke-width="'+sw+'" d="'+d+'"/><path class="ticks" stroke-width="'+sw*.9+'" stroke-dasharray="'+sw*.1+' '+sw*.55+'" d="'+d+'"/>';
+ h+='<circle class="pulse" cx="'+sp[0]+'" cy="'+sp[1]+'" r="'+sw*.9+'" stroke-width="'+sw*.2+'"/>';
+ h+='<circle class="pin" r="'+sw*.75+'" stroke-width="'+sw*.2+'"><animateMotion dur="3.2s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.55;1" path="'+d+'"/></circle>'+lab;
+ $('guide').innerHTML=h;
+}
+function build(instant){
+ $('gname').textContent=S.g.n;
+ $('ucm').className=S.u==='cm'?'on':'';$('uin').className=S.u==='in'?'on':'';
+ $('list').innerHTML=S.g.k.map(function(k,i){var m=M[k],c=S.v[k];
+  return '<div class="m'+(c?' done':'')+'" data-i="'+i+'"><div class="mh"><span class="nb">'+(i+1)+'</span><b>'+m.n+'</b><span class="in"><input type="number" inputmode="decimal" min="0" step="0.1" placeholder="0.0" value="'+(c?toU(c):'')+'" aria-label="'+m.n+'"><em>'+S.u+'</em></span></div><div class="mb"><ol>'+m.h.map(function(t){return '<li><span>'+t+'</span></li>'}).join('')+'</ol><p class="warn"></p></div></div>'}).join('');
+ count();active(S.a,instant,true);
+}
+function count(){var n=S.g.k.length,d=S.g.k.filter(function(k){return S.v[k]}).length;
+ $('prog').textContent=d+' of '+n+' measurements added';$('dk').textContent=d+' / '+n+' done';$('rv').disabled=d===0}
+function active(i,instant,noScroll){
+ S.a=i;var k=S.g.k[i],m=M[k];
+ [].forEach.call($('list').children,function(r,j){r.classList.toggle('on',j===i)});
+ $('cap').innerHTML='<b>'+m.n+'</b> · '+m.c;
+ var t=target(m.g);guide(m.g,t);cam(t,instant);
+ if(!noScroll){var r=$('list').children[i];if(r&&r.scrollIntoView)r.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'})}
+}
+$('list').onclick=function(e){var r=e.target.closest('.m');if(!r)return;var i=+r.dataset.i;if(i!==S.a)active(i);if(e.target.tagName!=='INPUT')r.querySelector('input').focus({preventScroll:true})};
+$('list').addEventListener('focusin',function(e){var r=e.target.closest('.m');if(r&&+r.dataset.i!==S.a)active(+r.dataset.i)});
+$('list').addEventListener('input',function(e){
+ var r=e.target.closest('.m');if(!r)return;var k=S.g.k[+r.dataset.i],x=parseFloat(e.target.value),w=r.querySelector('.warn');
+ if(x>0){S.v[k]=Math.round(toCm(x)*10)/10;r.classList.add('done');var rg=M[k].r,c=toCm(x);
+  w.textContent=(c<rg[0]||c>rg[1])?'That looks unusual (usually '+toU(rg[0])+' to '+toU(rg[1])+' '+S.u+'). Check it, or keep it if it is right.':''}
+ else{delete S.v[k];r.classList.remove('done');w.textContent=''}
+ count();persist();
+});
+$('list').addEventListener('keydown',function(e){if(e.key!=='Enter')return;var r=e.target.closest('.m');if(!r)return;e.preventDefault();var n=$('list').children[+r.dataset.i+1];if(n)n.querySelector('input').focus();else e.target.blur()});
+function setU(u){S.u=u;persist();build(true)}
+$('ucm').onclick=function(){setU('cm')};$('uin').onclick=function(){setU('in')};
+$('rv').onclick=function(){
+ var miss=S.g.k.filter(function(c){return !S.v[c]}).length;
+ $('rsub').textContent=S.g.n+(miss?'. '+miss+' still missing.':'. All measurements added.');
+ $('rl').innerHTML=S.g.k.map(function(c,i){return '<div class="row"><span>'+M[c].n+'</span><span><b>'+(S.v[c]?toU(S.v[c])+' '+S.u:'Missing')+'</b><button data-i="'+i+'">Edit</button></span></div>'}).join('');
+ persist();
+ var gn=$('gonext');if(miss){gn.textContent='Finish '+miss+' missing';gn.href='#';gn.onclick=function(){S.a=S.g.k.findIndex(function(c){return !S.v[c]});show(2);build(true);var r=$('list').children[S.a];if(r)r.querySelector('input').focus();return false}}else{gn.textContent='Continue to style and fabric';gn.href='order.html';gn.onclick=null}
+ show(3);
+};
+$('rl').onclick=function(e){var b=e.target.closest('button');if(!b)return;S.a=+b.dataset.i;show(2);build(true);var r=$('list').children[S.a];if(r)r.querySelector('input').focus()};
+$('redo').onclick=function(){grid();resume();show(1)};
+window.addEventListener('resize',function(){if(S.g&&!$('s2').hidden){var m=M[S.g.k[S.a]],t=target(m.g);guide(m.g,t);cam(t,true)}});
+grid();resume();
+var _q=/[?&]g=([a-z]+)/.exec(location.search);if(_q&&gid(_q[1]))pick(_q[1]);
+</script>
+<script>
+(function(){var m=document.getElementById('menu'),n=document.getElementById('hn');
+m.onclick=function(){var o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)};
+n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
+window.updBadge=function(){var t=0;try{JSON.parse(localStorage.getItem('aurelle_cart')||'[]').forEach(function(c){t+=c.q})}catch(e){}[].forEach.call(document.querySelectorAll('.cn'),function(e){e.textContent=t})};
+updBadge();})();
+</script>
+</body>
+</html>

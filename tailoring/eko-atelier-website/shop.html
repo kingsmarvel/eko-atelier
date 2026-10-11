@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Ready-made — Eko Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D1511;--s1:#15211B;--s2:#1D2D25;--line:#2C4036;--text:#EEF1EC;--muted:#A9B6AF;--tape:#F4C430;--brass:#C9A66B;
+--display:'Cormorant Garamond',Georgia,serif;--ui:'Manrope',system-ui,sans-serif;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*{box-sizing:border-box;margin:0}
+html,body{max-width:100%}
+body{overflow-x:clip}
+body{background:var(--bg);color:var(--text);font:400 16px/1.6 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(2.5rem,8vw,4rem)}
+h2{font-size:clamp(1.8rem,5vw,2.4rem)}
+h3{font-size:1.3rem;line-height:1.15}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+.lead{color:var(--muted);margin-top:10px;max-width:54ch}
+main.wrap{padding-top:clamp(52px,8vw,92px);padding-bottom:clamp(56px,8vw,90px)}
+.btn{display:inline-block;text-align:center;padding:14px 26px;border-radius:999px;font-weight:700;font-size:.97rem;border:1.5px solid var(--text);background:transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn.solid{background:var(--tape);border-color:var(--tape);color:#14170F}
+.btn.solid:hover{background:#fff;border-color:#fff}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.tools{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin:26px 0 14px}
+@media(max-width:620px){.tools{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.tools .search{grid-column:1/-1}}
+.search,.tools select{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:var(--s1);font-size:.95rem;min-width:0;width:100%}
+.search::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--s1);font-weight:600;font-size:.88rem;cursor:pointer}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.count{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+@media(min-width:1040px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--tape)}
+.ph{position:relative;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden}
+.ph::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 12px,transparent 12px 24px)}
+.ph svg{width:44%;fill:rgba(255,255,255,.85);position:relative}
+.ph small{position:absolute;left:10px;bottom:8px;font-size:.7rem;color:rgba(255,255,255,.65);font-weight:600}
+.tag{position:absolute;z-index:2;top:10px;left:10px;background:var(--tape);color:#14170F;font-size:.74rem;font-weight:800;padding:3px 10px;border-radius:999px}
+.info{padding:14px 14px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info b{font-size:.98rem;line-height:1.25}
+.info span{color:var(--muted);font-size:.82rem}
+.info .pr{margin-top:auto;padding-top:8px;font-weight:800;color:var(--text);font-size:1.02rem}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+.cta{margin-top:56px;background:var(--s1);border:1px solid var(--line);border-radius:22px;padding:34px 24px;text-align:center}
+.cta p{color:var(--muted);margin:10px auto 22px;max-width:46ch}
+/* sheets */
+.ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--s1);border:1px solid var(--line);width:100%;max-width:880px;max-height:92vh;overflow-y:auto;border-radius:24px 24px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom,0px));position:relative}
+@media(min-width:760px){.ov{align-items:center}.sheet{border-radius:24px;padding:28px}}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:1.2rem;z-index:2}
+.det{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media(min-width:760px){.det{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:30px}}
+.det .ph{border-radius:16px}
+.det .pr{font-size:1.5rem;font-weight:800;margin:6px 0 10px}
+.det p{color:var(--muted)}
+.spec{display:grid;gap:8px;margin:16px 0;font-size:.92rem}
+.spec div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.spec dt{color:var(--muted)}
+.lbl{font-weight:700;font-size:.9rem;margin:16px 0 8px}
+.sz{display:flex;gap:8px;flex-wrap:wrap}
+.sz button{min-width:50px;padding:9px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-weight:700;cursor:pointer}
+.sz button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.qty button{width:40px;height:40px;border:0;background:none;font-size:1.2rem;cursor:pointer}
+.qty span{min-width:30px;text-align:center;font-weight:800}
+.err{color:#F0B45B;font-size:.88rem;font-weight:600;min-height:1.3em;margin:8px 0}
+/* cart */
+.cart{max-width:460px;margin-left:auto;border-radius:24px 24px 0 0}
+@media(min-width:760px){.ov.right{align-items:stretch;justify-content:flex-end}.ov.right .cart{border-radius:24px 0 0 24px;max-height:100vh;height:100%;margin:0}}
+.ci{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.ci .ph{aspect-ratio:1;border-radius:10px}
+.ci b{display:block;font-size:.95rem;line-height:1.25}
+.ci span{color:var(--muted);font-size:.82rem}
+.ci .qty button{width:32px;height:32px}
+.ct{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0}
+.ct b{font-family:var(--display);font-size:2rem}
+.rm{background:none;border:0;color:var(--tape);font-weight:700;text-decoration:underline;cursor:pointer;font-size:.82rem;margin-top:4px}
+[hidden]{display:none!important}
+
+/* shared header + footer */
+header{position:sticky;top:0;z-index:50;background:rgba(13,21,17,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+.logo{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--text)}
+.hn{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500}
+.hn a:not(.btn){color:var(--text)}
+.hn a:not(.btn):hover,.hn a.on{color:var(--tape)}
+.hn .btn{padding:10px 20px;font-size:.9rem}
+.hr{display:flex;gap:10px;align-items:center}
+.cartbtn{font:600 .9rem var(--ui);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:none;cursor:pointer;display:inline-flex;align-items:center}
+.cartbtn:hover{border-color:var(--tape)}
+.cartbtn .cn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--tape);color:#14170F;font-size:.78rem;font-weight:800;margin-left:6px;padding:0 6px}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 16px;font:600 .88rem var(--ui);border-radius:999px;cursor:pointer}
+@media(max-width:900px){.menu{display:block}.hn{display:none;position:absolute;top:100%;left:0;right:0;background:#0D1511;flex-direction:column;align-items:flex-start;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line)}.hn.open{display:flex}}
+footer{background:#0A100D;border-top:1px solid var(--line);color:var(--muted);padding:56px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{color:var(--text);font:600 .95rem var(--ui);margin-bottom:12px}
+footer a{display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .logo{display:block;margin-bottom:8px}
+.copy{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ph{overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph.hasimg svg,.ph.hasimg small,.ph.hasimg::before{display:none}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><a class="logo" href="index.html">Eko Atelier</a><nav class="hn" id="hn" aria-label="Main"><a href="index.html">Home</a><a href="index.html#services">Services</a><a href="shop.html" class="on">Ready-made</a><a href="order.html">Fabrics</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a class="btn solid" href="measure.html">Measure online</a></nav><div class="hr"><button class="cartbtn" id="cb" type="button">Cart<span class="cn" id="cn">0</span></button><button class="menu" id="menu" aria-expanded="false" aria-controls="hn" type="button">Menu</button></div></div></header>
+
+<main class="wrap">
+ <h1>Ready to wear</h1>
+ <p class="lead">Finished pieces from our studio. Choose your size and order today, no waiting for a custom sew.</p>
+ <div class="tools">
+  <input class="search" id="q" type="search" placeholder="Search kaftan, shirt, gown..." aria-label="Search products">
+  <select id="sz" aria-label="Filter by size"><option value="">All sizes</option></select>
+  <select id="so" aria-label="Sort"><option value="n">Newest</option><option value="l">Price: low to high</option><option value="h">Price: high to low</option></select>
+ </div>
+ <div class="chips" id="chips"></div>
+ <p class="count" id="ct"></p>
+ <div class="grid" id="grid"></div>
+ <p class="empty" id="em" hidden>No pieces match your filters.</p>
+ <div class="cta"><h2>Want something made just for you?</h2><p>Order a custom piece cut from your own measurements, in the fabric and colour you choose.</p><a class="btn solid" href="measure.html">Start a custom order</a></div>
+</main>
+<footer><div class="wrap"><div class="fgrid">
+<div><a class="logo" href="index.html">Eko Atelier</a><p style="max-width:30ch">Custom clothing made to your measure, delivered to your door.</p></div>
+<div><h4>Shop</h4><a href="shop.html">Ready-made</a><a href="measure.html">Custom order</a><a href="order.html">Style and fabric</a></div>
+<div><h4>Company</h4><a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+<div><h4>Follow</h4><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">TikTok</a></div>
+</div><div class="copy"><span>© 2026 Eko Atelier</span><span>All rights reserved</span></div></div></footer>
+
+
+<div class="ov" id="pm" hidden><div class="sheet" role="dialog" aria-modal="true" aria-label="Product details"><button class="x" data-close aria-label="Close">×</button><div id="pb"></div></div></div>
+<div class="ov right" id="cm" hidden><div class="sheet cart" role="dialog" aria-modal="true" aria-label="Your cart"><button class="x" data-close aria-label="Close">×</button><h2>Your cart</h2><div id="cl"></div><div id="cf"></div></div></div>
+
+<script>
+var WA='2348030612964';
+var I={sh:'M22 8l-14 7 5 11 6-3v30h24V23l6 3 5-11-14-7c-2 4-5 6-8 6s-6-2-8-6z',tr:'M18 6h28l3 52H35L32 24l-3 34H15z',kf:'M24 6h16l4 8 10 6-2 12-8-3v33H20V29l-8 3-2-12 10-6z',jk:'M24 6l8 10 8-10 14 8-4 16-6-2v30H20V28l-6 2-4-16z',dr:'M25 6h14l1 14 10 38H14l10-38z',sk:'M22 12h20l12 44H10z',st:'M14 6l-8 4 3 7 4-2v15h14V15l4 2 3-7-8-4c-1 2-3 3-5 3s-4-1-5-3zM40 30h14l2 28H48l-1-14-2 14H38z'};
+var L=['S','M','L','XL','XXL'],W=['8','10','12','14','16'],T=['30','32','34','36','38'];
+var P=[
+ {id:1,n:'Navy senator set',c:'Sets',p:48000,s:L,f:'Cotton blend',col:'Navy',h:'#23364A',i:'st',t:'New',d:'Two-piece up and down set with a clean collarless neck and straight-leg trousers.'},
+ {id:2,n:'Sage linen shirt',c:'Tops',p:22500,s:L,f:'Linen',col:'Sage',h:'#6F8470',i:'sh',t:'Bestseller',d:'Light long-sleeve shirt with a soft collar. Made for warm days.'},
+ {id:3,n:'Charcoal trousers',c:'Bottoms',p:26000,s:T,f:'Wool blend',col:'Charcoal',h:'#3A3F42',i:'tr',d:'Tailored straight trousers with a flat front and clean break.'},
+ {id:4,n:'Wine wrap dress',c:'Women',p:38000,s:W,f:'Silk blend',col:'Wine',h:'#6B2A3A',i:'dr',t:'New',d:'A flattering wrap dress that falls just below the knee.'},
+ {id:5,n:'Ivory kaftan',c:'Native',p:32000,s:L,f:'Cotton',col:'Ivory',h:'#8B8672',i:'kf',d:'Long kaftan with subtle neck embroidery. Easy and formal at once.'},
+ {id:6,n:'Black two-piece suit',c:'Sets',p:92000,s:L,f:'Wool blend',col:'Black',h:'#1E2420',i:'st',t:'Bestseller',d:'Single-breasted jacket with matching trousers. Fully lined.'},
+ {id:7,n:'Ankara print shirt',c:'Tops',p:19500,s:L,f:'Ankara',col:'Sunset',h:'#B4531B',i:'sh',d:'Short-sleeve shirt in a bold printed Ankara. Each cut is unique.'},
+ {id:8,n:'Emerald gown',c:'Women',p:58000,s:W,f:'Silk',col:'Emerald',h:'#146B50',i:'dr',t:'New',d:'Floor-length gown with a fitted bodice and a flowing skirt.'},
+ {id:9,n:'Sand chino shorts',c:'Bottoms',p:15000,s:T,f:'Cotton twill',col:'Sand',h:'#8F7F5E',i:'tr',d:'Tailored shorts that sit just above the knee.'},
+ {id:10,n:'Burgundy blazer',c:'Tops',p:46000,s:L,f:'Velvet',col:'Burgundy',h:'#6E1F2F',i:'jk',d:'Soft velvet blazer with satin lapels. A statement for events.'},
+ {id:11,n:'Royal agbada',c:'Native',p:65000,s:['M','L','XL','XXL'],f:'Brocade',col:'Royal blue',h:'#233E8A',i:'kf',t:'Bestseller',d:'Wide flowing agbada with hand-finished embroidery.'},
+ {id:12,n:'Rose pencil skirt',c:'Women',p:18500,s:W,f:'Crepe',col:'Rose',h:'#A56B72',i:'sk',d:'High-waisted pencil skirt that sits at the knee.'}
+];
+var C=['All','Tops','Bottoms','Native','Sets','Women'];
+var $=function(i){return document.getElementById(i)},N=function(n){return '₦'+n.toLocaleString('en-NG')};
+var S={cat:'All',sel:null,size:null,q:1,cart:[]};
+try{S.cart=JSON.parse(localStorage.getItem('aurelle_cart')||'[]')}catch(e){}
+function byId(id){return P.filter(function(p){return p.id===id})[0]}
+function ph(p,s){return '<div class="ph" style="background:'+p.h+'"><img src="images/product-'+p.id+'.jpg" alt="'+p.n+'" loading="lazy" onload="this.parentNode.classList.add(\'hasimg\')" onerror="this.remove()">'+(p.t&&!s?'<span class="tag">'+p.t+'</span>':'')+'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="'+I[p.i]+'"/></svg>'+(s?'':'<small>Product photo</small>')+'</div>'}
+var allSizes=[];P.forEach(function(p){p.s.forEach(function(x){if(allSizes.indexOf(x)<0)allSizes.push(x)})});
+$('sz').innerHTML+=allSizes.map(function(s){return '<option>'+s+'</option>'}).join('');
+$('chips').innerHTML=C.map(function(c){return '<button class="chip'+(c==='All'?' on':'')+'" data-c="'+c+'">'+c+'</button>'}).join('');
+$('chips').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;S.cat=b.dataset.c;[].forEach.call($('chips').children,function(x){x.classList.toggle('on',x===b)});grid()};
+function grid(){
+ var q=$('q').value.toLowerCase().trim(),z=$('sz').value,so=$('so').value;
+ var l=P.filter(function(p){return(S.cat==='All'||p.c===S.cat)&&(!z||p.s.indexOf(z)>=0)&&(!q||(p.n+' '+p.f+' '+p.col).toLowerCase().indexOf(q)>=0)});
+ if(so==='l')l.sort(function(a,b){return a.p-b.p});else if(so==='h')l.sort(function(a,b){return b.p-a.p});else l.sort(function(a,b){return b.id-a.id});
+ $('grid').innerHTML=l.map(function(p){return '<button class="card" data-id="'+p.id+'">'+ph(p)+'<div class="info"><b>'+p.n+'</b><span>'+p.f+' · '+p.col+'</span><span>Sizes '+p.s[0]+' to '+p.s[p.s.length-1]+'</span><div class="pr">'+N(p.p)+'</div></div></button>'}).join('');
+ $('ct').textContent=l.length+' piece'+(l.length===1?'':'s');$('em').hidden=l.length>0;
+}
+$('q').oninput=grid;$('sz').onchange=grid;$('so').onchange=grid;
+/* detail */
+function open(el){el.hidden=false;document.body.style.overflow='hidden'}
+function close(){$('pm').hidden=true;$('cm').hidden=true;document.body.style.overflow=''}
+document.addEventListener('click',function(e){if(e.target.hasAttribute&&(e.target.hasAttribute('data-close')||e.target.classList.contains('ov')))close()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+$('grid').onclick=function(e){var b=e.target.closest('.card');if(!b)return;S.sel=byId(+b.dataset.id);S.size=null;S.q=1;detail();open($('pm'))};
+function detail(){
+ var p=S.sel;
+ $('pb').innerHTML='<div class="det">'+ph(p)+'<div><h2>'+p.n+'</h2><div class="pr">'+N(p.p)+'</div><p>'+p.d+'</p><dl class="spec"><div><dt>Fabric</dt><dd>'+p.f+'</dd></div><div><dt>Colour</dt><dd>'+p.col+'</dd></div><div><dt>Category</dt><dd>'+p.c+'</dd></div><div><dt>Ready in</dt><dd>In stock, ships in 2 to 4 days</dd></div></dl>'+
+ '<div class="lbl">Size</div><div class="sz" id="szs">'+p.s.map(function(s){return '<button type="button" class="'+(S.size===s?'on':'')+'" data-s="'+s+'">'+s+'</button>'}).join('')+'</div>'+
+ '<div class="lbl">Quantity</div><div class="qty"><button type="button" id="dm" aria-label="Fewer">−</button><span>'+S.q+'</span><button type="button" id="dp" aria-label="More">+</button></div>'+
+ '<p class="err" id="de" role="status"></p><button class="btn solid full" id="add" type="button">Add to cart · '+N(p.p*S.q)+'</button>'+
+ '<p class="lbl" style="font-weight:500;color:var(--muted)">Not sure of your size? <a href="measure.html" style="color:var(--tape);text-decoration:underline">Take your measurements</a>.</p></div></div>';
+}
+$('pb').onclick=function(e){
+ var t=e.target;
+ if(t.dataset&&t.dataset.s){S.size=t.dataset.s;detail()}
+ else if(t.id==='dm'){if(S.q>1){S.q--;detail()}}
+ else if(t.id==='dp'){if(S.q<10){S.q++;detail()}}
+ else if(t.id==='add'){
+  if(!S.size){$('de').textContent='Choose a size first.';return}
+  var f=S.cart.filter(function(c){return c.id===S.sel.id&&c.s===S.size})[0];
+  if(f)f.q=Math.min(10,f.q+S.q);else S.cart.push({id:S.sel.id,s:S.size,q:S.q});
+  save();close();cart();open($('cm'));
+ }
+};
+/* cart */
+function save(){try{localStorage.setItem('aurelle_cart',JSON.stringify(S.cart))}catch(e){}badge()}
+function badge(){$('cn').textContent=S.cart.reduce(function(a,c){return a+c.q},0)}
+function cart(){
+ if(!S.cart.length){$('cl').innerHTML='<p class="empty">Your cart is empty.</p>';$('cf').innerHTML='';return}
+ var tot=0;
+ $('cl').innerHTML=S.cart.map(function(c,i){var p=byId(c.id);tot+=p.p*c.q;return '<div class="ci">'+ph(p,true)+'<div><b>'+p.n+'</b><span>Size '+c.s+' · '+N(p.p)+'</span><br><button class="rm" data-r="'+i+'">Remove</button></div><div class="qty"><button data-m="'+i+'" aria-label="Fewer">−</button><span>'+c.q+'</span><button data-p="'+i+'" aria-label="More">+</button></div></div>'}).join('');
+ var msg='Hello Eko Atelier, I would like to order:\n'+S.cart.map(function(c){var p=byId(c.id);return '- '+p.n+' (size '+c.s+') x'+c.q}).join('\n')+'\nTotal: '+N(tot);
+ $('cf').innerHTML='<div class="ct"><span>Total</span><b>'+N(tot)+'</b></div><a class="btn solid full" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'">Order on WhatsApp</a><p class="lbl" style="font-weight:500;color:var(--muted)">We confirm availability and delivery on WhatsApp.</p>';
+}
+$('cl').onclick=function(e){var t=e.target.dataset||{};
+ if(t.r!==undefined)S.cart.splice(+t.r,1);
+ else if(t.m!==undefined){var c=S.cart[+t.m];c.q--;if(c.q<1)S.cart.splice(+t.m,1)}
+ else if(t.p!==undefined){var d=S.cart[+t.p];if(d.q<10)d.q++}
+ else return;save();cart()};
+$('cb').onclick=function(){cart();open($('cm'))};
+badge();grid();if(/[?&]cart=1/.test(location.search)){cart();open($('cm'))}
+</script>
+<script>
+(function(){var m=document.getElementById('menu'),n=document.getElementById('hn');
+m.onclick=function(){var o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)};
+n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
+window.updBadge=function(){var t=0;try{JSON.parse(localStorage.getItem('aurelle_cart')||'[]').forEach(function(c){t+=c.q})}catch(e){}[].forEach.call(document.querySelectorAll('.cn'),function(e){e.textContent=t})};
+updBadge();})();
+</script>
+</body>
+</html>

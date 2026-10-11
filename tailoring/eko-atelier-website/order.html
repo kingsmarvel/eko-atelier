@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Style and fabric — Eko Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D1511;--s1:#15211B;--s2:#1D2D25;--line:#2C4036;--text:#EEF1EC;--muted:#A9B6AF;--tape:#F4C430;--brass:#C9A66B;
+--display:'Cormorant Garamond',Georgia,serif;--ui:'Manrope',system-ui,sans-serif;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*{box-sizing:border-box;margin:0}
+html,body{max-width:100%}
+body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 16px/1.6 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(2.5rem,8vw,4rem)}
+h2{font-size:clamp(1.8rem,4.5vw,2.3rem)}
+h3{font-size:1.35rem}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+.lead{color:var(--muted);margin-top:10px;max-width:54ch}
+main.wrap{padding-top:clamp(52px,8vw,92px);padding-bottom:clamp(56px,8vw,90px)}
+@media(max-width:959px){body{padding-bottom:72px}}
+.btn{display:inline-block;text-align:center;padding:14px 26px;border-radius:999px;font-weight:700;font-size:.97rem;border:1.5px solid var(--text);background:transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn.solid{background:var(--tape);border-color:var(--tape);color:#14170F}
+.btn.solid:hover{background:#fff;border-color:#fff}
+.btn.full{width:100%}
+.lay{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin-top:28px}
+@media(min-width:960px){.lay{grid-template-columns:minmax(0,1fr) 340px;gap:40px;align-items:start}.sum{position:sticky;top:84px}}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:20px}
+.card>p.sub{color:var(--muted);margin:6px 0 18px;font-size:.93rem}
+.stepno{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tape);color:#14170F;font-weight:800;font-size:.85rem;margin-right:10px;vertical-align:middle;font-family:var(--ui)}
+.banner{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--s2);border:1px solid var(--tape);border-radius:16px;padding:16px 20px;margin-top:22px}
+.banner b{display:block}
+.banner span{display:block;margin-top:6px;color:var(--muted);font-size:.9rem}
+.banner select{padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);margin-top:8px;max-width:100%}
+/* upload */
+.drop{border:2px dashed var(--line);border-radius:16px;padding:30px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;display:block}
+.drop:hover,.drop.over{border-color:var(--tape);background:var(--s2)}
+.drop b{display:block;font-size:1.02rem}
+.drop span{color:var(--muted);font-size:.88rem}
+.drop input{display:none}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.th{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th button{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(13,21,17,.85);cursor:pointer;font-size:1rem;line-height:1}
+textarea,input[type=text],input[type=tel]{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:1rem}
+textarea{min-height:90px;resize:vertical;margin-top:14px}
+label.f{display:grid;gap:6px;font-weight:600;font-size:.88rem;margin-top:14px}
+/* fabrics */
+.fabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:640px){.fabs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fab{background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:left;cursor:pointer;transition:border-color .2s}
+.fab:hover{border-color:var(--brass)}
+.fab.on{border-color:var(--tape);background:var(--s2)}
+.fab i{display:block;height:54px;border-radius:9px;margin-bottom:10px}
+.fab b{display:block;font-size:.95rem}
+.fab small{color:var(--muted);font-size:.78rem}
+.pv{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+@media(min-width:640px){.pv{grid-template-columns:200px minmax(0,1fr);align-items:center}}
+.big{height:150px;border-radius:16px;border:1px solid var(--line);position:relative;overflow:hidden}
+.big::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 6px),repeating-linear-gradient(-45deg,rgba(0,0,0,.08) 0 2px,transparent 2px 6px)}
+.cols{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.sw{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw.on{outline:2px solid var(--tape);outline-offset:3px;border-color:var(--bg)}
+.pvn{font-weight:700}
+.pvn span{color:var(--muted);font-weight:500}
+/* options */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);font-weight:600;font-size:.9rem;cursor:pointer}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.ol{margin-top:18px}
+.ol>b{display:block;margin-bottom:8px;font-size:.92rem}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.qty button{width:44px;height:44px;border:0;background:none;font-size:1.3rem;cursor:pointer}
+.qty span{min-width:34px;text-align:center;font-weight:800}
+/* summary */
+.sum .card{margin:0}
+.sum dl{display:grid;gap:10px;margin:16px 0}
+.sum dl div{display:flex;justify-content:space-between;gap:12px;font-size:.93rem}
+.sum dt{color:var(--muted)}
+.sum dd{font-weight:700;text-align:right}
+.tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:14px;margin-bottom:16px}
+.tot b{font-family:var(--display);font-size:2rem;font-weight:700}
+.est{color:var(--muted);font-size:.8rem;margin-top:10px}
+.err{color:#F0B45B;font-size:.88rem;font-weight:600;min-height:1.3em;margin-top:8px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(13,21,17,.96);border-top:1px solid var(--line);padding:10px 18px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dock b{font-family:var(--display);font-size:1.6rem}
+.dock .btn{padding:11px 22px}
+@media(min-width:960px){.dock{display:none}}
+.done{text-align:center;padding:30px 10px}
+.done h2{margin-bottom:8px}
+[hidden]{display:none!important}
+
+/* shared header + footer */
+header{position:sticky;top:0;z-index:50;background:rgba(13,21,17,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+.logo{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--text)}
+.hn{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500}
+.hn a:not(.btn){color:var(--text)}
+.hn a:not(.btn):hover,.hn a.on{color:var(--tape)}
+.hn .btn{padding:10px 20px;font-size:.9rem}
+.hr{display:flex;gap:10px;align-items:center}
+.cartbtn{font:600 .9rem var(--ui);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:none;cursor:pointer;display:inline-flex;align-items:center}
+.cartbtn:hover{border-color:var(--tape)}
+.cartbtn .cn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--tape);color:#14170F;font-size:.78rem;font-weight:800;margin-left:6px;padding:0 6px}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 16px;font:600 .88rem var(--ui);border-radius:999px;cursor:pointer}
+@media(max-width:900px){.menu{display:block}.hn{display:none;position:absolute;top:100%;left:0;right:0;background:#0D1511;flex-direction:column;align-items:flex-start;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line)}.hn.open{display:flex}}
+footer{background:#0A100D;border-top:1px solid var(--line);color:var(--muted);padding:56px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{color:var(--text);font:600 .95rem var(--ui);margin-bottom:12px}
+footer a{display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .logo{display:block;margin-bottom:8px}
+.copy{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><a class="logo" href="index.html">Eko Atelier</a><nav class="hn" id="hn" aria-label="Main"><a href="index.html">Home</a><a href="index.html#services">Services</a><a href="shop.html">Ready-made</a><a href="order.html" class="on">Fabrics</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a class="btn solid" href="measure.html">Measure online</a></nav><div class="hr"><a class="cartbtn" href="shop.html?cart=1">Cart<span class="cn">0</span></a><button class="menu" id="menu" aria-expanded="false" aria-controls="hn" type="button">Menu</button></div></div></header>
+
+<main class="wrap">
+ <h1>Choose your style and fabric</h1>
+ <p class="lead">Upload a photo of the look you want, pick a material and colour, and send us your order.</p>
+ <div class="banner" id="bn"></div>
+
+ <div class="lay">
+  <div>
+   <section class="card">
+    <h2><span class="stepno">1</span>Your style</h2>
+    <p class="sub">Add up to 3 photos of the style you want. You will send them in WhatsApp when you place the order, so we have them with your measurements.</p>
+    <label class="drop" id="drop"><input type="file" id="file" accept="image/*" multiple><b>Tap to upload photos</b><span>or drag them here. JPG or PNG.</span></label>
+    <div class="thumbs" id="thumbs"></div>
+    <textarea id="notes" placeholder="Describe the style: collar type, pockets, buttons, length, anything we should copy or change." aria-label="Style notes"></textarea>
+   </section>
+
+   <section class="card">
+    <h2><span class="stepno">2</span>Fabric and colour</h2>
+    <p class="sub">Select a material, then choose a colour.</p>
+    <div class="fabs" id="fabs"></div>
+    <div class="pv"><div class="big" id="big"></div><div><div class="pvn" id="pvn"></div><div class="cols" id="cols"></div></div></div>
+   </section>
+
+   <section class="card">
+    <h2><span class="stepno">3</span>Fit and delivery</h2>
+    <div class="ol"><b>Fit preference</b><div class="chips" id="fit"></div></div>
+    <div class="ol"><b>Delivery</b><div class="chips" id="del"></div></div>
+    <div class="ol"><b>Quantity</b><div class="qty"><button id="qm" type="button" aria-label="Fewer">−</button><span id="qn">1</span><button id="qp" type="button" aria-label="More">+</button></div></div>
+   </section>
+
+   <section class="card" id="det">
+    <h2><span class="stepno">4</span>Your details</h2>
+    <p class="sub">So we can reach you and deliver your order.</p>
+    <label class="f">Full name<input type="text" id="nm" autocomplete="name"></label>
+    <label class="f">Phone or WhatsApp<input type="tel" id="ph" autocomplete="tel"></label>
+    <label class="f">Delivery address<input type="text" id="ad" autocomplete="street-address"></label>
+   </section>
+  </div>
+
+  <aside class="sum" id="sum">
+   <div class="card" id="sc">
+    <h3>Order summary</h3>
+    <dl id="dl"></dl>
+    <div class="tot"><span>Estimated total</span><b id="tt"></b></div>
+    <button class="btn solid full" id="place" type="button">Place order</button>
+    <p class="err" id="er" role="status"></p>
+    <p class="est">Final price is confirmed after we review your style and measurements.</p>
+   </div>
+   <div class="card done" id="ok" hidden><h2>One last step</h2><p class="lead" style="margin:0 auto">We opened WhatsApp with your full order and measurements. Tap Send there to complete your order, and add your style photos in the chat.</p><a class="btn solid full" id="wa" style="margin-top:20px" target="_blank" rel="noopener" href="#">Open WhatsApp again</a><a class="btn full" style="margin-top:10px" href="index.html">Back to home</a></div>
+  </aside>
+ </div>
+</main>
+<footer><div class="wrap"><div class="fgrid">
+<div><a class="logo" href="index.html">Eko Atelier</a><p style="max-width:30ch">Custom clothing made to your measure, delivered to your door.</p></div>
+<div><h4>Shop</h4><a href="shop.html">Ready-made</a><a href="measure.html">Custom order</a><a href="order.html">Style and fabric</a></div>
+<div><h4>Company</h4><a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+<div><h4>Follow</h4><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">TikTok</a></div>
+</div><div class="copy"><span>© 2026 Eko Atelier</span><span>All rights reserved</span></div></div></footer>
+
+
+<div class="dock"><div><small style="color:var(--muted)">Estimated total</small><br><b id="dt"></b></div><a class="btn solid" href="#sum">View summary</a></div>
+
+<script>
+var GM={ss:['Short-sleeve shirt',15000],ls:['Long-sleeve shirt',18000],po:['Polo',14000],jk:['Jacket or blazer',45000],wc:['Waistcoat',20000],tr:['Trousers',22000],sh:['Shorts',14000],sk:['Skirt',18000],kf:['Kaftan',30000],ag:['Agbada',55000],ds:['Dashiki',16000],bu:['Buba',20000],se:['Senator set',45000],ks:['Kaftan set',50000],su:['Two-piece suit',85000],ts:['Shirt and shorts set',28000],bs:['Blouse and skirt set',38000],dr:['Dress',30000],gw:['Gown',55000],bl:['Blouse',18000],ju:['Jumpsuit',40000]};
+var P={'Sunset':'radial-gradient(circle at 30% 40%,#F4C430 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#fff 0 12%,transparent 13%),#C2410C','Ocean':'radial-gradient(circle at 30% 40%,#F4C430 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#fff 0 12%,transparent 13%),#0E5A8A','Forest':'radial-gradient(circle at 30% 40%,#F4C430 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#fff 0 12%,transparent 13%),#1F6B45','Royal':'radial-gradient(circle at 30% 40%,#F4C430 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#fff 0 12%,transparent 13%),#4B2A8A'};
+var F=[
+ {id:'cot',n:'Cotton',d:'Soft and breathable',x:0,c:[['White','#F2F2EE'],['Sky','#9CC3E0'],['Navy','#1F2D4A'],['Black','#1A1A1A'],['Olive','#6B7040'],['Sand','#D9C7A3']]},
+ {id:'lin',n:'Linen',d:'Light and airy',x:3500,c:[['Natural','#CFC3A5'],['Sage','#8FA283'],['Rust','#A4553A'],['Blue','#5F7FA3'],['White','#EDEDE8'],['Charcoal','#3E4244']]},
+ {id:'ank',n:'Ankara',d:'Bold African print',x:6000,c:[['Sunset',P.Sunset],['Ocean',P.Ocean],['Forest',P.Forest],['Royal',P.Royal]]},
+ {id:'wol',n:'Wool blend',d:'Structured, for suits',x:9000,c:[['Charcoal','#3A3F42'],['Navy','#1B2742'],['Grey','#8A8F92'],['Brown','#5B4636'],['Black','#161616']]},
+ {id:'sil',n:'Silk',d:'Smooth with a sheen',x:12000,c:[['Wine','#6B2A3A'],['Emerald','#146B50'],['Champagne','#D8C29A'],['Midnight','#1C2347'],['Blush','#E3B7B4']]},
+ {id:'lac',n:'Lace',d:'Delicate and detailed',x:10000,c:[['Ivory','#EDE6D6'],['Black','#1A1A1A'],['Gold','#B8924A'],['Rose','#D497A0']]},
+ {id:'bro',n:'Brocade',d:'Rich woven pattern',x:11000,c:[['Gold','#B8924A'],['Royal blue','#233E8A'],['Burgundy','#6E1F2F'],['Emerald','#146B50']]},
+ {id:'vel',n:'Velvet',d:'Deep and luxurious',x:9500,c:[['Burgundy','#6E1F2F'],['Forest','#1E4D38'],['Navy','#1B2742'],['Black','#161616']]}
+];
+var FITS=['Slim','Regular','Relaxed'],DEL=[['Standard','7 to 14 days',0],['Express','3 to 5 days',8000]];
+var $=function(i){return document.getElementById(i)},N=function(n){return '₦'+n.toLocaleString('en-NG')};
+var WA='2348030612964';
+var ST={cur:null,items:{}};
+try{var _s=JSON.parse(localStorage.getItem('aurelle_meas')||'null');if(_s&&_s.items)ST=_s}catch(e){}
+var S={gid:(ST.cur&&GM[ST.cur])?ST.cur:null,f:F[0],ci:0,fit:1,del:0,q:1,files:[]};
+function prog(id){var it=ST.items[id];if(!it)return {d:0,n:0,ok:false};var d=Object.keys(it.v||{}).length,n=it.n||d;return {d:d,n:n,ok:n>0&&d>=n}}
+function banner(){
+ var p=S.gid?prog(S.gid):{d:0,n:0,ok:false};
+ var opts=Object.keys(GM).map(function(k){var q=prog(k);return '<option value="'+k+'"'+(k===S.gid?' selected':'')+'>'+GM[k][0]+(q.ok?' ✓':q.d?' ('+q.d+'/'+q.n+')':'')+'</option>'}).join('');
+ var st=!S.gid?'Choose the garment you are ordering.':p.ok?'All '+p.n+' measurements saved.':p.d?p.d+' of '+p.n+' measurements saved. Finish them to order.':'No measurements yet for this garment.';
+ $('bn').innerHTML='<div><b>Ordering</b><select id="gs" aria-label="Garment" style="margin-top:6px">'+(S.gid?'':'<option value="">Choose garment</option>')+opts+'</select><span>'+st+'</span></div><a class="btn'+(p.ok?'':' solid')+'" href="measure.html'+(S.gid?'?g='+S.gid:'')+'">'+(p.ok?'Edit measurements':p.d?'Finish measurements':'Take measurements')+'</a>';
+ $('gs').onchange=function(){S.gid=this.value||null;banner();sum()};
+}
+/* upload */
+function thumbs(){$('thumbs').innerHTML=S.files.map(function(f,i){return '<div class="th"><img alt="Style reference '+(i+1)+'" src="'+f.u+'"><button type="button" data-i="'+i+'" aria-label="Remove photo">×</button></div>'}).join('')}
+function add(list){[].slice.call(list).forEach(function(f){if(S.files.length<3&&/^image\//.test(f.type))S.files.push({u:URL.createObjectURL(f),n:f.name})});thumbs();sum()}
+$('file').onchange=function(){add(this.files);this.value=''};
+$('thumbs').onclick=function(e){var b=e.target.closest('button');if(!b)return;S.files.splice(+b.dataset.i,1);thumbs();sum()};
+['dragenter','dragover'].forEach(function(t){$('drop').addEventListener(t,function(e){e.preventDefault();this.classList.add('over')})});
+['dragleave','drop'].forEach(function(t){$('drop').addEventListener(t,function(e){e.preventDefault();this.classList.remove('over')})});
+$('drop').addEventListener('drop',function(e){add(e.dataTransfer.files)});
+/* fabric */
+function fabs(){$('fabs').innerHTML=F.map(function(f){var c=f.c[0][1];return '<button type="button" class="fab'+(f===S.f?' on':'')+'" data-id="'+f.id+'"><i style="background:'+c+'"></i><b>'+f.n+'</b><small>'+f.d+'</small></button>'}).join('')}
+function cols(){
+ $('cols').innerHTML=S.f.c.map(function(c,i){return '<button type="button" class="sw'+(i===S.ci?' on':'')+'" data-i="'+i+'" aria-label="'+c[0]+'" style="background:'+c[1]+'"></button>'}).join('');
+ var c=S.f.c[S.ci];$('big').style.background=c[1];$('big').style.backgroundSize=c[1].indexOf('gradient')>0?'46px 46px':'auto';
+ $('pvn').innerHTML=S.f.n+' <span>in '+c[0]+(S.f.x?' · adds '+N(S.f.x):' · no extra charge')+'</span>';
+}
+$('fabs').onclick=function(e){var b=e.target.closest('.fab');if(!b)return;S.f=F.filter(function(f){return f.id===b.dataset.id})[0];S.ci=0;fabs();cols();sum()};
+$('cols').onclick=function(e){var b=e.target.closest('.sw');if(!b)return;S.ci=+b.dataset.i;cols();sum()};
+/* options */
+function chips(){
+ $('fit').innerHTML=FITS.map(function(f,i){return '<button type="button" class="chip'+(i===S.fit?' on':'')+'" data-i="'+i+'">'+f+'</button>'}).join('');
+ $('del').innerHTML=DEL.map(function(d,i){return '<button type="button" class="chip'+(i===S.del?' on':'')+'" data-i="'+i+'">'+d[0]+' · '+d[1]+(d[2]?' (+'+N(d[2])+')':'')+'</button>'}).join('');
+}
+$('fit').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;S.fit=+b.dataset.i;chips();sum()};
+$('del').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;S.del=+b.dataset.i;chips();sum()};
+$('qm').onclick=function(){if(S.q>1){S.q--;sum()}};$('qp').onclick=function(){if(S.q<10){S.q++;sum()}};
+function total(){var b=S.gid?GM[S.gid][1]:0;return (b+S.f.x)*S.q+DEL[S.del][2]}
+function sum(){
+ $('qn').textContent=S.q;
+ var q=S.gid?prog(S.gid):{d:0,n:0,ok:false};
+ var rows=[['Garment',S.gid?GM[S.gid][0]:'Not chosen'],['Measurements',q.ok?'All '+q.n+' saved':q.d?q.d+' of '+q.n+' saved':'Not added'],['Fabric',S.f.n+', '+S.f.c[S.ci][0]],['Style photos',S.files.length?S.files.length+' (send in chat)':'None'],['Fit',FITS[S.fit]],['Delivery',DEL[S.del][0]+', '+DEL[S.del][1]],['Quantity',S.q]];
+ $('dl').innerHTML=rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>'}).join('');
+ var t=S.gid?N(total()):'—';$('tt').textContent=t;$('dt').textContent=t;
+}
+$('place').onclick=function(){
+ var er=$('er'),q=S.gid?prog(S.gid):null;
+ if(!S.gid){er.textContent='Choose a garment first.';return}
+ if(!q.ok){er.innerHTML='Finish all measurements before ordering. <a href="measure.html?g='+S.gid+'" style="color:var(--tape);text-decoration:underline">Finish measurements</a>';return}
+ if(!$('nm').value.trim()||!$('ph').value.trim()||!$('ad').value.trim()){er.textContent='Add your name, phone and address to place the order.';$('det').scrollIntoView({behavior:'smooth'});return}
+ er.textContent='';
+ var it=ST.items[S.gid],c=S.f.c[S.ci];
+ var ms=Object.keys(it.v).map(function(k){return '- '+((it.l&&it.l[k])||k)+': '+it.v[k]+' cm'}).join('\n');
+ var msg=['Hello Eko Atelier, I would like to place a custom order.','','Garment: '+GM[S.gid][0],'Fabric: '+S.f.n+', '+c[0],'Fit: '+FITS[S.fit],'Delivery: '+DEL[S.del][0]+' ('+DEL[S.del][1]+')','Quantity: '+S.q,'Estimated total: '+N(total()),'','Measurements:',ms,'','Style notes: '+($('notes').value.trim()||'None'),S.files.length?'I have '+S.files.length+' style photo(s) to send in this chat.':'No style photos.','','Name: '+$('nm').value.trim(),'Phone: '+$('ph').value.trim(),'Address: '+$('ad').value.trim()].join('\n');
+ var url='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+ try{localStorage.setItem('aurelle_o',JSON.stringify({g:S.gid,f:S.f.n,c:c[0],fit:FITS[S.fit],q:S.q,t:total()}))}catch(e){}
+ $('wa').href=url;$('sc').hidden=true;$('ok').hidden=false;window.open(url,'_blank');$('sum').scrollIntoView({behavior:'smooth'});
+};
+banner();fabs();cols();chips();sum();
+</script>
+<script>
+(function(){var m=document.getElementById('menu'),n=document.getElementById('hn');
+m.onclick=function(){var o=n.classList.toggle('open');m.setAttribute('aria-expanded',o)};
+n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
+window.updBadge=function(){var t=0;try{JSON.parse(localStorage.getItem('aurelle_cart')||'[]').forEach(function(c){t+=c.q})}catch(e){}[].forEach.call(document.querySelectorAll('.cn'),function(e){e.textContent=t})};
+updBadge();})();
+</script>
+</body>
+</html>
